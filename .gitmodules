@@ -1,0 +1,4 @@
+[submodule "kgt-react"]
+	path = kgt-react
+	url = git@github.com:PegasusMKD/kgt-react.git
+	branch = master
