@@ -2,7 +2,11 @@
 	path = kgt-react
 	url = git@github.com:PegasusMKD/kgt-react.git
 	branch = master
-[submodule ".\\kgt-registry\\"]
-	path = .\\kgt-registry\\
+[submodule "kgt-registry"]
+	path = kgt-registry
 	url = git@github.com:PegasusMKD/kgt-registry.git
+	branch = master
+[submodule "kgt-gateway"]
+	path = kgt-gateway
+	url = git@github.com:PegasusMKD/kgt-gateway.git
 	branch = master
