@@ -10,3 +10,11 @@
 	path = kgt-gateway
 	url = git@github.com:PegasusMKD/kgt-gateway.git
 	branch = master
+[submodule "kgt-authorization"]
+	path = kgt-authorization
+	url = git@github.com:PegasusMKD/kgt-authorization.git
+	branch = master
+[submodule ".\\kgt-authorization\\"]
+	path = .\\kgt-authorization\\
+	url = git@github.com:PegasusMKD/kgt-authorization.git
+	branch = master
