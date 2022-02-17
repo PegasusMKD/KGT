@@ -32,7 +32,7 @@ class FeedbackController(private val feedbackService: FeedbackService) {
                 .header("Error", "Cannot create feedback with an existing ID")
                 .body(null)
 
-        dto.correctedByUserId = userID
+        dto?.correctedByUserId = userID
         val result = feedbackService.save(dto)
         return ResponseEntity.ok(result)
     }
