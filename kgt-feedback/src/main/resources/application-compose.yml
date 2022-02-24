@@ -1,0 +1,17 @@
+spring:
+  config:
+    activate:
+      on-profile: compose
+  datasource:
+    driver-class-name: ${FEEDBACK_DATASOURCE_DRIVER}
+    url: ${FEEDBACK_DATASOURCE_URL}
+    username: ${FEEDBACK_DATASOURCE_USERNAME}
+    password: ${FEEDBACK_DATASOURCE_PASSWORD}
+    jpa:
+      hibernate:
+        ddl-auto: ${FEEDBACK_JPA_HIBERNATE_DDL_AUTO}
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://kgt-registry:8762/eureka/

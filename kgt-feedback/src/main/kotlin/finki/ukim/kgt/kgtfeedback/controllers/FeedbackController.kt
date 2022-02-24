@@ -20,7 +20,7 @@ class FeedbackController(private val feedbackService: FeedbackService) {
         @RequestBody dto: FeedbackDto?,
         @RequestHeader(name = "Roles", required = true) roles: List<String>,
         @RequestHeader(name = "User-ID", required = true) userID: String
-    ): ResponseEntity<FeedbackDto?> {
+    ): ResponseEntity<FeedbackDto> {
         // TODO: Implement check as interceptor with custom annotations
         if (!roles.contains("MODERATOR")) {
             logger.debug("Someone tried to create feedback without a proper role.")
@@ -34,7 +34,7 @@ class FeedbackController(private val feedbackService: FeedbackService) {
 
         dto?.correctedByUserId = userID
         val result = feedbackService.save(dto)
-        return ResponseEntity.ok(result)
+        return result?.let { ResponseEntity.ok(it) } ?: ResponseEntity.badRequest().build()
     }
 
     @PutMapping("/", produces = [APPLICATION_JSON_VALUE], consumes = [APPLICATION_JSON_VALUE])
@@ -42,7 +42,7 @@ class FeedbackController(private val feedbackService: FeedbackService) {
         @RequestBody dto: FeedbackDto?,
         @RequestHeader(name = "Roles", required = true) roles: List<String>,
         @RequestHeader(name = "User-ID", required = true) userID: String
-    ): ResponseEntity<FeedbackDto?> {
+    ): ResponseEntity<FeedbackDto> {
         // TODO: Implement check as interceptor with custom annotations
         if (!roles.contains("MODERATOR")) {
             logger.debug("Someone tried to update feedback without a proper role.")
@@ -53,7 +53,7 @@ class FeedbackController(private val feedbackService: FeedbackService) {
             return create(dto, roles, userID)
 
         val result = feedbackService.save(dto)
-        return ResponseEntity.ok(result)
+        return result?.let { ResponseEntity.ok(it) } ?: ResponseEntity.badRequest().build()
     }
 
     @GetMapping("/{id}", produces = [APPLICATION_JSON_VALUE])

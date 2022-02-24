@@ -9,14 +9,13 @@ spring:
       ribbon:
         enabled: false
   datasource:
-    driver-class-name: ${FEEDBACK_DATASOURCE_DRIVER}
-    url: ${FEEDBACK_DATASOURCE_URL}
-    username: ${FEEDBACK_DATASOURCE_USERNAME}
-    password: ${FEEDBACK_DATASOURCE_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:8432/kgt_feedback
+    username: kgt
+    password: kgt
   jpa:
-    database-platform: ${FEEDBACK_JPA_DATABASE_PLATFORM}
     hibernate:
-      ddl-auto: ${FEEDBACK_JPA_HIBERNATE_DDL_AUTO}
+      ddl-auto: update
 
 management:
   endpoint:
