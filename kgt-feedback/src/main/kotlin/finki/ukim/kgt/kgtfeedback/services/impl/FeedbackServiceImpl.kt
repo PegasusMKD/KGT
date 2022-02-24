@@ -48,8 +48,8 @@ class FeedbackServiceImpl(
     override fun findAll(prbe: PageRequestByExample<FeedbackDto?>): PageResponse<FeedbackDto?> {
         val dto: FeedbackDto? = prbe.example
         val pageable = prbe.toPageable()
-        val page = if (dto != null)
-            feedbackJPARepository.findAll(makeFilter(dto), pageable)
+        val page = if (dto != null) Page.empty<Feedback>()
+//            feedbackJPARepository.findAll(makeFilter(dto), pageable)
         else Page.empty(pageable!!)
 
         val content = page.content.stream()
@@ -59,7 +59,7 @@ class FeedbackServiceImpl(
         return PageResponse(page.totalPages, page.totalElements.toInt(), content)
     }
 
-    override fun makeFilter(dto: FeedbackDto?): BooleanExpression {
+    override fun makeFilter(dto: FeedbackDto?): BooleanExpression? {
         val qFeedback = QFeedback.feedback
         val opBuilder = OptionalBooleanBuilder.builder(qFeedback.isNotNull)
         if (dto == null)

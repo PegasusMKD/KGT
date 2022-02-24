@@ -12,5 +12,5 @@ interface FeedbackService {
     fun save(dto: FeedbackDto?): FeedbackDto?
     fun deleteById(id: String)
     fun findAll(prbe: PageRequestByExample<FeedbackDto?>): PageResponse<FeedbackDto?>
-    fun makeFilter(dto: FeedbackDto?): BooleanExpression
+    fun makeFilter(dto: FeedbackDto?): BooleanExpression?
 }
