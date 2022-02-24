@@ -3,6 +3,7 @@
   <component name="VcsDirectoryMappings">
     <mapping directory="" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/kgt-authorization" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/kgt-feedback" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/kgt-gateway" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/kgt-ml" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/kgt-ml/libs/OpenNMT/Chimera_trained" vcs="Git" />
