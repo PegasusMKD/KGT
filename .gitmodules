@@ -18,3 +18,7 @@
 	path = kgt-ml
 	url = git@github.com:PegasusMKD/kgt-ml.git
 	branch = master
+[submodule "kgt-feedback"]
+	path = kgt-feedback
+	url = https://github.com/PegasusMKD/kgt-feedback
+	branch = master
