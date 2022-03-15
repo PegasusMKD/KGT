@@ -50,7 +50,6 @@ services:
     ports:
       - "8091:8091"
 
-
   feedback-postgres:
     image: 'postgres:11.4-alpine'
     container_name: feedback-postgres
@@ -59,10 +58,28 @@ services:
       - POSTGRES_USER=kgt
       - POSTGRES_PASSWORD=kgt
     ports:
-      - "8432:5432"
+#      - Might not even be needed
+      - "8400:5432"
     volumes:
       - ./deploy/sql/create_database.sql:/docker-entrypoint-initdb.d/create_database.sql
       - postgres_data:/var/lib/postgresql/data
+
+  kgt-react:
+    image: 'kgt/kgt-react:latest'
+    container_name: kgt-react
+    build:
+      context: ./kgt-react/
+      target: production
+    depends_on:
+      - kgt-feedback
+      - kgt-gateway
+      - kgt-authorization
+      - kgt-registry
+    environment:
+      - PUBLIC_URL=/app/public
+    ports:
+      - "80:80"
+
 
 volumes:
   postgres_data:
