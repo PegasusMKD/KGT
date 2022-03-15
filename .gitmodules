@@ -22,3 +22,6 @@
 	path = kgt-feedback
 	url = git@github.com:PegasusMKD/kgt-feedback.git
 	branch = master
+[submodule "kgt-ml-prediction"]
+	path = kgt-ml-prediction
+	url = git@github.com:tasevsky/flask-ml.git
