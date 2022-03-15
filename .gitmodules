@@ -16,7 +16,7 @@
 	branch = master
 [submodule "kgt-ml-train"]
 	path = kgt-ml-train
-	url = git@github.com:PegasusMKD/kgt-ml.git
+	url = git@github.com:PegasusMKD/kgt-ml-train.git
 	branch = master
 [submodule "kgt-feedback"]
 	path = kgt-feedback
