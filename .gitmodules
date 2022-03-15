@@ -14,8 +14,8 @@
 	path = kgt-authorization
 	url = git@github.com:PegasusMKD/kgt-authorization.git
 	branch = master
-[submodule "kgt-ml"]
-	path = kgt-ml
+[submodule "kgt-ml-train"]
+	path = kgt-ml-train
 	url = git@github.com:PegasusMKD/kgt-ml.git
 	branch = master
 [submodule "kgt-feedback"]
