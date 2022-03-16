@@ -33,6 +33,20 @@ services:
     ports:
       - "8761:8761"
 
+  kgt-ml-prediction:
+    image: 'kgt/kgt-ml-prediction:latest'
+    restart: always
+    command: gunicorn --bind 0.0.0.0:5001 manage:app
+    build:
+      context: ./kgt-ml-prediction/
+    container_name: kgt-ml-prediction
+    ports:
+      - "8101:5001"
+    environment:
+      - FLASK_APP=server/__init__.py
+      - FLASK_ENV=production
+      - APP_FOLDER=/home/app/web
+
   kgt-feedback:
     image: 'kgt/kgt-feedback:latest'
     build:

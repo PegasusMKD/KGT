@@ -7,6 +7,8 @@
     <mapping directory="$PROJECT_DIR$/kgt-gateway" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/kgt-ml" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/kgt-ml-prediction" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/kgt-ml-train" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/kgt-ml-train/libs/OpenNMT/Chimera_trained" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/kgt-ml/libs/OpenNMT/Chimera_trained" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/kgt-react" vcs="Git" />
     <mapping directory="$PROJECT_DIR$/kgt-registry" vcs="Git" />
