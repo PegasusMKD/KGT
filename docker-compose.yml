@@ -2,7 +2,7 @@ version: '3.3'
 
 services:
   kgt-registry:
-    image: 'kgt/kgt-registry:latest'
+    image: '${IP_ADDR}/kgt/kgt-registry:latest'
     restart: always
     build:
       context: ./kgt-registry/
@@ -11,7 +11,7 @@ services:
       - "8762:8762"
 
   kgt-authorization:
-    image: 'kgt/kgt-authorization:latest'
+    image: '${IP_ADDR}/kgt/kgt-authorization:latest'
     restart: always
     build:
       context: ./kgt-authorization/
@@ -22,7 +22,7 @@ services:
       - "8081:8081"
 
   kgt-gateway:
-    image: 'kgt/kgt-gateway:latest'
+    image: '${IP_ADDR}/kgt/kgt-gateway:latest'
     restart: always
     build:
       context: ./kgt-gateway/
@@ -34,7 +34,7 @@ services:
       - "8761:8761"
 
   kgt-ml-prediction:
-    image: 'kgt/kgt-ml-prediction:latest'
+    image: '${IP_ADDR}/kgt/kgt-ml-prediction:latest'
     restart: always
     command: gunicorn --bind 0.0.0.0:5001 manage:app
     build:
@@ -48,7 +48,7 @@ services:
       - APP_FOLDER=/home/app/web
 
   kgt-feedback:
-    image: 'kgt/kgt-feedback:latest'
+    image: '${IP_ADDR}/kgt/kgt-feedback:latest'
     build:
       context: ./kgt-feedback/
     container_name: kgt-feedback
@@ -79,7 +79,7 @@ services:
       - postgres_data:/var/lib/postgresql/data
 
   kgt-react:
-    image: 'kgt/kgt-react:latest'
+    image: '${IP_ADDR}/kgt/kgt-react:latest'
     container_name: kgt-react
     build:
       context: ./kgt-react/
