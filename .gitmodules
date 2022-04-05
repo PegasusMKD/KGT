@@ -28,3 +28,4 @@
 [submodule "kgt-ontology"]
 	path = kgt-ontology
 	url = git@github.com:Tijana37/kgt-ontology.git
+	branch = master
