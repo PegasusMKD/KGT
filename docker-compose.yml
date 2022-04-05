@@ -43,9 +43,9 @@ services:
     ports:
       - "8101:5001"
     environment:
-      - FLASK_APP=server/__init__.py
-      - FLASK_ENV=production
-      - APP_FOLDER=/home/app/web
+      - 'FLASK_APP=${FLASK_APP}'
+      - 'FLASK_ENV=${FLASK_ENV}'
+      - 'APP_FOLDER=${APP_FOLDER}'
 
   kgt-feedback:
     image: '${IP_ADDR}/kgt/kgt-feedback:latest'
@@ -56,11 +56,11 @@ services:
       - kgt-gateway
       - feedback-postgres
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://feedback-postgres:5432/kgt_feedback
-      - FEEDBACK_DATASOURCE_DRIVER=org.postgresql.Driver
-      - SPRING_DATASOURCE_USERNAME=kgt
-      - SPRING_DATASOURCE_PASSWORD=kgt
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - 'SPRING_DATASOURCE_URL=${FEEDBACK_DATASOURCE_URL}'
+      - 'FEEDBACK_DATASOURCE_DRIVER=${FEEDBACK_DATASOURCE_DRIVER}'
+      - 'SPRING_DATASOURCE_USERNAME=${FEEDBACK_DATASOURCE_USERNAME}'
+      - 'SPRING_DATASOURCE_PASSWORD=${FEEDBACK_DATASOURCE_PASSWORD}'
+      - 'SPRING_JPA_HIBERNATE_DDL_AUTO=${FEEDBACK_JPA_HIBERNATE_DDL_AUTO}'
     ports:
       - "8091:8091"
 
@@ -69,8 +69,8 @@ services:
     container_name: feedback-postgres
     restart: always
     environment:
-      - POSTGRES_USER=kgt
-      - POSTGRES_PASSWORD=kgt
+      - 'POSTGRES_USER=${FEEDBACK_POSTGRES_USERNAME}'
+      - 'POSTGRES_PASSWORD=${FEEDBACK_POSTGRES_PASSWORD}'
     ports:
 #      - Might not even be needed
       - "8400:5432"
@@ -90,7 +90,7 @@ services:
       - kgt-authorization
       - kgt-registry
     environment:
-      - PUBLIC_URL=/app/public
+      - 'PUBLIC_URL=${PUBLIC_URL}'
     ports:
       - "80:80"
 
