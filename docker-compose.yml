@@ -15,8 +15,6 @@ services:
     environment:
       - 'POSTGRES_USER=${AUTHORIZATION_POSTGRES_USERNAME}'
       - 'POSTGRES_PASSWORD=${AUTHORIZATION_POSTGRES_PASSWORD}'
-    ports:
-      - "8500:5432"
     volumes:
       - ./deploy/sql/create_authorization_database.sql:/docker-entrypoint-initdb.d/create_authorization_database.sql
       - authorization_data:/var/lib/postgresql/data
@@ -34,8 +32,6 @@ services:
       - 'SPRING_DATASOURCE_USERNAME=${AUTHORIZATION_DATASOURCE_USERNAME}'
       - 'SPRING_DATASOURCE_PASSWORD=${AUTHORIZATION_DATASOURCE_PASSWORD}'
       - 'SPRING_JPA_HIBERNATE_DDL_AUTO=${AUTHORIZATION_JPA_HIBERNATE_DDL_AUTO}'
-    ports:
-      - "8081:8081"
 
   kgt-gateway:
     image: '${IP_ADDR}/kgt/kgt-gateway:latest'
@@ -52,8 +48,6 @@ services:
     restart: always
     command: gunicorn --bind 0.0.0.0:5001 manage:app
     container_name: kgt-ml-prediction
-    ports:
-      - "8101:5001"
     environment:
       - 'FLASK_APP=${FLASK_APP}'
       - 'FLASK_ENV=${FLASK_ENV}'
@@ -71,8 +65,6 @@ services:
       - 'SPRING_DATASOURCE_USERNAME=${FEEDBACK_DATASOURCE_USERNAME}'
       - 'SPRING_DATASOURCE_PASSWORD=${FEEDBACK_DATASOURCE_PASSWORD}'
       - 'SPRING_JPA_HIBERNATE_DDL_AUTO=${FEEDBACK_JPA_HIBERNATE_DDL_AUTO}'
-    ports:
-      - "8091:8091"
 
   feedback-postgres:
     image: 'postgres:11.4-alpine'
@@ -81,9 +73,6 @@ services:
     environment:
       - 'POSTGRES_USER=${FEEDBACK_POSTGRES_USERNAME}'
       - 'POSTGRES_PASSWORD=${FEEDBACK_POSTGRES_PASSWORD}'
-    ports:
-      #      - Might not even be needed
-      - "8400:5432"
     volumes:
       - ./deploy/sql/create_feedback_database.sql:/docker-entrypoint-initdb.d/create_feedback_database.sql
       - feedback_data:/var/lib/postgresql/data
