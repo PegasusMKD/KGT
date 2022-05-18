@@ -3,6 +3,11 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/kgt.iml" filepath="$PROJECT_DIR$/.idea/kgt.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kgt-authorization/kgt-authorization.iml" filepath="$PROJECT_DIR$/kgt-authorization/kgt-authorization.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kgt-feedback/kgt-feedback.iml" filepath="$PROJECT_DIR$/kgt-feedback/kgt-feedback.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kgt-gateway/kgt-gateway.iml" filepath="$PROJECT_DIR$/kgt-gateway/kgt-gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kgt-ontology/kgt-ontology.iml" filepath="$PROJECT_DIR$/kgt-ontology/kgt-ontology.iml" />
+      <module fileurl="file://$PROJECT_DIR$/kgt-registry/kgt-registry.iml" filepath="$PROJECT_DIR$/kgt-registry/kgt-registry.iml" />
     </modules>
   </component>
 </project>
