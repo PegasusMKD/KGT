@@ -4,28 +4,42 @@ services:
   kgt-registry:
     image: '${IP_ADDR}/kgt/kgt-registry:latest'
     restart: always
-    build:
-      context: ./kgt-registry/
     container_name: kgt-registry
     ports:
       - "8762:8762"
 
+  authorization-postgres:
+    image: 'postgres:11.4-alpine'
+    container_name: authorization-postgres
+    restart: always
+    environment:
+      - 'POSTGRES_USER=${AUTHORIZATION_POSTGRES_USERNAME}'
+      - 'POSTGRES_PASSWORD=${AUTHORIZATION_POSTGRES_PASSWORD}'
+    ports:
+      - "8500:5432"
+    volumes:
+      - ./deploy/sql/create_authorization_database.sql:/docker-entrypoint-initdb.d/create_authorization_database.sql
+      - authorization_data:/var/lib/postgresql/data
+
   kgt-authorization:
     image: '${IP_ADDR}/kgt/kgt-authorization:latest'
     restart: always
-    build:
-      context: ./kgt-authorization/
     container_name: kgt-authorization
     depends_on:
       - kgt-registry
+      - authorization-postgres
+    environment:
+      - 'SPRING_DATASOURCE_URL=${AUTHORIZATION_DATASOURCE_URL}'
+      - 'AUTHORIZATION_DATASOURCE_DRIVER=${AUTHORIZATION_DATASOURCE_DRIVER}'
+      - 'SPRING_DATASOURCE_USERNAME=${AUTHORIZATION_DATASOURCE_USERNAME}'
+      - 'SPRING_DATASOURCE_PASSWORD=${AUTHORIZATION_DATASOURCE_PASSWORD}'
+      - 'SPRING_JPA_HIBERNATE_DDL_AUTO=${AUTHORIZATION_JPA_HIBERNATE_DDL_AUTO}'
     ports:
       - "8081:8081"
 
   kgt-gateway:
     image: '${IP_ADDR}/kgt/kgt-gateway:latest'
     restart: always
-    build:
-      context: ./kgt-gateway/
     container_name: kgt-gateway
     depends_on:
       - kgt-registry
@@ -37,8 +51,6 @@ services:
     image: '${IP_ADDR}/kgt/kgt-ml-prediction:latest'
     restart: always
     command: gunicorn --bind 0.0.0.0:5001 manage:app
-    build:
-      context: ./kgt-ml-prediction/
     container_name: kgt-ml-prediction
     ports:
       - "8101:5001"
@@ -49,8 +61,6 @@ services:
 
   kgt-feedback:
     image: '${IP_ADDR}/kgt/kgt-feedback:latest'
-    build:
-      context: ./kgt-feedback/
     container_name: kgt-feedback
     depends_on:
       - kgt-gateway
@@ -72,18 +82,15 @@ services:
       - 'POSTGRES_USER=${FEEDBACK_POSTGRES_USERNAME}'
       - 'POSTGRES_PASSWORD=${FEEDBACK_POSTGRES_PASSWORD}'
     ports:
-#      - Might not even be needed
+      #      - Might not even be needed
       - "8400:5432"
     volumes:
-      - ./deploy/sql/create_database.sql:/docker-entrypoint-initdb.d/create_database.sql
-      - postgres_data:/var/lib/postgresql/data
+      - ./deploy/sql/create_feedback_database.sql:/docker-entrypoint-initdb.d/create_feedback_database.sql
+      - feedback_data:/var/lib/postgresql/data
 
   kgt-react:
     image: '${IP_ADDR}/kgt/kgt-react:latest'
     container_name: kgt-react
-    build:
-      context: ./kgt-react/
-      target: production
     depends_on:
       - kgt-feedback
       - kgt-gateway
@@ -96,5 +103,7 @@ services:
 
 
 volumes:
-  postgres_data:
+  feedback_data:
+    driver: local
+  authorization_data:
     driver: local
