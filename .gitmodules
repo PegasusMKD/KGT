@@ -8,7 +8,7 @@
 	branch = master
 [submodule "kgt-gateway"]
 	path = kgt-gateway
-	url = ./kgt-gateway/
+	url = git@github.com:PegasusMKD/kgt-gateway.git
 	branch = master
 [submodule "kgt-authorization"]
 	path = kgt-authorization
