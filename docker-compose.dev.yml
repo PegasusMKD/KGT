@@ -1,6 +1,26 @@
 version: '3.3'
 
 services:
+  kgt-registry:
+    build:
+      context: ./kgt-registry/
+
+  kgt-authorization:
+    build:
+      context: ./kgt-authorization/
+
+  kgt-gateway:
+    build:
+      context: ./kgt-gateway/
+
+  kgt-ml-prediction:
+    build:
+      context: ./kgt-ml-prediction/
+
+  kgt-feedback:
+    build:
+      context: ./kgt-feedback/
+
   kgt-react:
     build:
       dockerfile: dev.Dockerfile
