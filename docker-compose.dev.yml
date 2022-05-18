@@ -1,0 +1,13 @@
+version: '3.3'
+
+services:
+  kgt-react:
+    build:
+      dockerfile: dev.Dockerfile
+      context: ./kgt-react/
+    volumes:
+      - ./kgt-react:/app
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    ports:
+      - "3000:3000"
