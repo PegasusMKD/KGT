@@ -5,8 +5,6 @@ services:
     image: '${IP_ADDR}/kgt/kgt-registry:latest'
     restart: always
     container_name: kgt-registry
-    ports:
-      - "8762:8762"
 
   authorization-postgres:
     image: 'postgres:11.4-alpine'
