@@ -51,6 +51,31 @@ services:
       - 'FLASK_ENV=${FLASK_ENV}'
       - 'APP_FOLDER=${APP_FOLDER}'
 
+
+  kgt-ontology:
+    image: '${IP_ADDR}/kgt/kgt-ontology:latest'
+    container_name: kgt-ontology
+    depends_on:
+      - kgt-gateway
+      - ontology-mysql
+    environment:
+      - 'SPRING_DATASOURCE_URL=${ONTOLOGY_MYSQL_DATASOURCE_URL}'
+      - 'ONTOLOGY_MYSQL_DATASOURCE_DRIVER=${ONTOLOGY_MYSQL_DATASOURCE_DRIVER}'
+      - 'SPRING_DATASOURCE_USERNAME=${ONTOLOGY_MYSQL_DATASOURCE_USERNAME}'
+      - 'SPRING_DATASOURCE_PASSWORD=${ONTOLOGY_MYSQL_DATASOURCE_PASSWORD}'
+      - 'SPRING_JPA_HIBERNATE_DDL_AUTO=${ONTOLOGY_MYSQL_JPA_HIBERNATE_DDL_AUTO}'
+
+  ontology-mysql:
+    image: mysql:8
+    container_name: ontology-mysql
+    volumes:
+      - ontology_data:/var/lib/mysql
+    environment:
+      - 'MYSQL_ROOT_PASSWORD=${ONTOLOGY_MYSQL_ROOT_PASSWORD}'
+      - 'MYSQL_PASSWORD=${ONTOLOGY_MYSQL_USER_PASSWORD}'
+      - 'MYSQL_USER=${ONTOLOGY_MYSQL_USER_USERNAME}'
+      - 'MYSQL_DATABASE=${ONTOLOGY_MYSQL_DATABASE}'
+
   kgt-feedback:
     image: '${IP_ADDR}/kgt/kgt-feedback:latest'
     container_name: kgt-feedback
@@ -93,4 +118,6 @@ volumes:
   feedback_data:
     driver: local
   authorization_data:
+    driver: local
+  ontology_data:
     driver: local
