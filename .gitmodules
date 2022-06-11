@@ -27,5 +27,5 @@
 	url = git@github.com:tasevsky/flask-ml.git
 [submodule "kgt-ontology"]
 	path = kgt-ontology
-	url = git@github.com:Tijana37/kgt-ontology.git
+	url = git@github.com:PegasusMKD/kgt-ontology.git
 	branch = master
