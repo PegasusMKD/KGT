@@ -41,19 +41,9 @@ services:
     ports:
       - "8761:8761"
 
-  kgt-ml-prediction:
-    image: '${IP_ADDR}/kgt/kgt-ml-prediction:latest'
-    restart: always
-    command: gunicorn --bind 0.0.0.0:5001 manage:app
-    container_name: kgt-ml-prediction
-    environment:
-      - 'FLASK_APP=${FLASK_APP}'
-      - 'FLASK_ENV=${FLASK_ENV}'
-      - 'APP_FOLDER=${APP_FOLDER}'
-
-
   kgt-ontology:
     image: '${IP_ADDR}/kgt/kgt-ontology:latest'
+    restart: always
     container_name: kgt-ontology
     depends_on:
       - kgt-gateway

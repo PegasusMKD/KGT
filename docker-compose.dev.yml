@@ -13,10 +13,6 @@ services:
     build:
       context: ./kgt-gateway/
 
-  kgt-ml-prediction:
-    build:
-      context: ./kgt-ml-prediction/
-
   kgt-feedback:
     build:
       context: ./kgt-feedback/
@@ -24,6 +20,10 @@ services:
   kgt-ontology:
     build:
       context: ./kgt-ontology/
+
+  ontology-mysql:
+    ports:
+      - "3306:3306"
 
   kgt-react:
     build:
