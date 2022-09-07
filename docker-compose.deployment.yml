@@ -21,6 +21,10 @@ services:
     build:
       context: ./kgt-feedback/
 
+  kgt-ontology:
+    build:
+      context: ./kgt-ontology/
+
   kgt-react:
     build:
       context: ./kgt-react/
